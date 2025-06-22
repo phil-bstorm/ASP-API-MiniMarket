@@ -11,6 +11,6 @@ namespace MiniMarket.Domain.Models
         public DateOnly Birthdate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public UtilisateurRole Role { get; set; } = UtilisateurRole.Client; // Default role
 
-        public List<UtilisateurOrder> Orders { get; set; } = [];
+        public List<Order> Orders { get; set; } = [];
     }
 }

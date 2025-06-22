@@ -5,7 +5,7 @@ namespace MiniMarket.API.Mappers
 {
     public static class OrderMappers
     {
-        public static OrderListDTO ToOrderListDTO(this UtilisateurOrder o)
+        public static OrderListDTO ToOrderListDTO(this Order o)
         {
             return new OrderListDTO
             {
@@ -15,7 +15,7 @@ namespace MiniMarket.API.Mappers
             };
         }
 
-        public static OrderDTO ToOrderDTO(this UtilisateurOrder o)
+        public static OrderDTO ToOrderDTO(this Order o)
         {
             return new OrderDTO
             {

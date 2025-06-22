@@ -63,11 +63,13 @@ builder.Services.AddDbContext<MiniMarketContext>(b =>
 // Add Repositories
 builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 #endregion
 
 #region BLL Services
 builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 #endregion
 
 #region API Services

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniMarket.DAL.Database;
 
@@ -11,9 +12,11 @@ using MiniMarket.DAL.Database;
 namespace MiniMarket.DAL.Migrations
 {
     [DbContext(typeof(MiniMarketContext))]
-    partial class MiniMarketContextModelSnapshot : ModelSnapshot
+    [Migration("20250622160943_rename_UtilisateurOrder-To-Order")]
+    partial class rename_UtilisateurOrderToOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

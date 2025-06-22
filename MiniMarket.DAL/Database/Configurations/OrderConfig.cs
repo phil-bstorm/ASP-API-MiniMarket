@@ -4,9 +4,9 @@ using MiniMarket.Domain.Models;
 
 namespace MiniMarket.DAL.Database.Configurations
 {
-    public class UtilisateurOrderConfig : IEntityTypeConfiguration<UtilisateurOrder>
+    public class OrderConfig : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<UtilisateurOrder> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.ToTable("Orders");
 
@@ -25,11 +25,11 @@ namespace MiniMarket.DAL.Database.Configurations
             // Relationships configuration
             builder.HasOne(o => o.Owner)
                 .WithMany(u => u.Orders) // Assuming Utilisateur has a collection of Orders
-                .HasForeignKey("OwnerId") // Assuming OwnerId is the foreign key in UtilisateurOrder
+                .HasForeignKey("OwnerId") // Assuming OwnerId is the foreign key in Order
                 .IsRequired();
 
             builder.HasMany(o => o.Products)
-                .WithOne(op => op.Order) // Assuming OrderProduct has a reference to UtilisateurOrder
+                .WithOne(op => op.Order) // Assuming OrderProduct has a reference to Order
                 .HasForeignKey(op => op.OrderId) // Foreign key in OrderProduct
                 .OnDelete(DeleteBehavior.Cascade); // Optional: define delete behavior
         }

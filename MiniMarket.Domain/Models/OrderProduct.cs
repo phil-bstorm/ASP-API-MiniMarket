@@ -5,7 +5,7 @@
         public Guid OrderId { get; set; }
         public int ProductId { get; set; }
 
-        public UtilisateurOrder Order { get; set; } = null!;
+        public Order Order { get; set; } = null!;
         public required Product Product { get; set; }
         public required int Quantity { get; set; }
         public required double Price { get; set; }
