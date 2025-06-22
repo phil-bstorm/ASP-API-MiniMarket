@@ -62,10 +62,12 @@ builder.Services.AddDbContext<MiniMarketContext>(b =>
 #region DAL Respositories
 // Add Repositories
 builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 #endregion
 
 #region BLL Services
 builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 #endregion
 
 #region API Services

@@ -25,5 +25,16 @@ namespace MiniMarket.API.Mappers
                 Description = p.Description
             };
         }
+
+        public static Product ToProduct(this ProductCreateDTO dto)
+        {
+            return new Product
+            {
+                Name = dto.Name,
+                Price = dto.Price,
+                Discount = dto.Discount,
+                Description = dto.Description
+            };
+        }
     }
 }
