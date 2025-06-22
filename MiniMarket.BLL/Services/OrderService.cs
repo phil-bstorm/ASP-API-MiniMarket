@@ -43,7 +43,7 @@ namespace MiniMarket.BLL.Services
                         Price = opc.Price,
                         Discount = opc.Discount,
                         Quantity = productIds[i].Quantity,
-                    })
+                    }).ToList()
             };
 
             Order newOrder = _repository.Create(order);

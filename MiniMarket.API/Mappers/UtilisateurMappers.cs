@@ -13,7 +13,7 @@ namespace MiniMarket.API.Mappers
                 Username = u.Username,
                 Email = u.Email,
                 Birthdate = u.Birthdate,
-                Role = u.Role
+                Role = u.Role.ToString()
             };
         }
 
@@ -25,7 +25,7 @@ namespace MiniMarket.API.Mappers
                 Username = u.Username,
                 Email = u.Email,
                 Birthdate = u.Birthdate,
-                Role = u.Role,
+                Role = u.Role.ToString(),
                 Orders = u.Orders.Select(o => o.ToOrderListDTO()).ToList()
             };
         }

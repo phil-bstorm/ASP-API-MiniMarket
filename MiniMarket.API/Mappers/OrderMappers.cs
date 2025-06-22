@@ -11,7 +11,7 @@ namespace MiniMarket.API.Mappers
             {
                 Id = o.Id.ToString(),
                 OrderDate = o.OrderDate,
-                Status = o.Status
+                Status = o.Status.ToString()
             };
         }
 
@@ -21,7 +21,7 @@ namespace MiniMarket.API.Mappers
             {
                 Id = o.Id.ToString(),
                 OrderDate = o.OrderDate,
-                Status = o.Status,
+                Status = o.Status.ToString(),
                 Products = o.Products.Select(p => p.ToProductOrderDTO()).ToList()
             };
         }

@@ -1,20 +1,18 @@
-﻿using MiniMarket.Domain.CustomEnums;
-
-namespace MiniMarket.API.DTOs
+﻿namespace MiniMarket.API.DTOs
 {
     public class OrderListDTO
     {
         public required string Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public required OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public required string Status { get; set; }
     }
 
     public class OrderDTO
     {
         public required string Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public required OrderStatus Status { get; set; } = OrderStatus.Pending;
-        public List<ProductOrderDTO> Products = [];
+        public required string Status { get; set; }
+        public List<ProductOrderDTO> Products { get; set; } = [];
     }
 
     public class ProductOrderDTO

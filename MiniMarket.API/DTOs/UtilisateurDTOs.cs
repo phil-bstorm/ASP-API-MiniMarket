@@ -1,5 +1,4 @@
-﻿using MiniMarket.Domain.CustomEnums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MiniMarket.API.DTOs
 {
@@ -9,7 +8,7 @@ namespace MiniMarket.API.DTOs
         public required string Username { get; set; }
         public required string Email { get; set; }
         public required DateOnly Birthdate { get; set; }
-        public required UtilisateurRole Role { get; set; }
+        public required string Role { get; set; }
     }
 
     public class UtilisateurDTO
@@ -18,9 +17,9 @@ namespace MiniMarket.API.DTOs
         public required string Username { get; set; }
         public required string Email { get; set; }
         public required DateOnly Birthdate { get; set; }
-        public required UtilisateurRole Role { get; set; }
+        public required string Role { get; set; }
 
-        public List<OrderListDTO> Orders = [];
+        public List<OrderListDTO> Orders { get; set; } = [];
     }
 
     public class UtilisateurUpdateForm

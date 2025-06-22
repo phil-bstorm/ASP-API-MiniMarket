@@ -44,7 +44,8 @@ namespace MiniMarket.API.Controllers
             if (int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int requestUserId))
             {
                 Utilisateur utilisateur = _utilisateurService.GetById(requestUserId);
-                return Ok(utilisateur.ToUtilisateurDTO());
+                UtilisateurDTO dto = utilisateur.ToUtilisateurDTO();
+                return Ok(dto);
             }
             return Unauthorized();
         }

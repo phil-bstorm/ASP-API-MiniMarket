@@ -8,6 +8,6 @@ namespace MiniMarket.Domain.Models
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
         public required Utilisateur Owner { get; set; } = null!;
-        public IEnumerable<OrderProduct> Products { get; set; } = [];
+        public List<OrderProduct> Products { get; set; } = [];
     }
 }
