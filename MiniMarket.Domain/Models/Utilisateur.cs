@@ -9,6 +9,8 @@ namespace MiniMarket.Domain.Models
         public required string Email { get; set; }
         public required string Password { get; set; }
         public DateOnly Birthdate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
-        public UtilisateurRole Role { get; set; } = UtilisateurRole.Player; // Default role
+        public UtilisateurRole Role { get; set; } = UtilisateurRole.Client; // Default role
+
+        public List<UtilisateurOrder> Orders { get; set; } = [];
     }
 }

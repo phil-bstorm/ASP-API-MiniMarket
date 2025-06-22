@@ -1,31 +1,35 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MiniMarket.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniMarket.DAL.Database.Configurations
 {
-    public class ProductConfig: IEntityTypeConfiguration<Product>
+    public class ProductConfig : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Product> builder) {
+        public void Configure(EntityTypeBuilder<Product> builder)
+        {
             builder.ToTable("Products");
 
-            /*
-             public int Id { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
-        public int Discount { get; set; }
-        public string Description { get; set; }
-            */
-
+            // Properties configuration
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 
+            builder.Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            builder.Property(p => p.Price)
+                .IsRequired();
+
+            builder.Property(p => p.Discount)
+                .IsRequired();
+
+            builder.Property(p => p.Description)
+                .IsRequired()
+                .HasMaxLength(500);
+
+            // Constraints
             builder.HasKey(p => p.Id);
         }
     }

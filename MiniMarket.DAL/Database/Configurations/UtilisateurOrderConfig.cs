@@ -1,0 +1,37 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MiniMarket.Domain.Models;
+
+namespace MiniMarket.DAL.Database.Configurations
+{
+    public class UtilisateurOrderConfig : IEntityTypeConfiguration<UtilisateurOrder>
+    {
+        public void Configure(EntityTypeBuilder<UtilisateurOrder> builder)
+        {
+            builder.ToTable("Orders");
+
+            // Properties configuration
+            builder.Property(o => o.Id)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+
+            builder.Property(o => o.OrderDate)
+                .IsRequired();
+
+            builder.Property(o => o.Status)
+                .IsRequired()
+                .HasConversion<string>(); // Assuming OrderStatus is an enum
+
+            // Relationships configuration
+            builder.HasOne(o => o.Owner)
+                .WithMany(u => u.Orders) // Assuming Utilisateur has a collection of Orders
+                .HasForeignKey("OwnerId") // Assuming OwnerId is the foreign key in UtilisateurOrder
+                .IsRequired();
+
+            builder.HasMany(o => o.Products)
+                .WithOne(op => op.Order) // Assuming OrderProduct has a reference to UtilisateurOrder
+                .HasForeignKey(op => op.OrderId) // Foreign key in OrderProduct
+                .OnDelete(DeleteBehavior.Cascade); // Optional: define delete behavior
+        }
+    }
+}

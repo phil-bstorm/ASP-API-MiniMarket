@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MiniMarket.DAL.Database.Configurations;
 using MiniMarket.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniMarket.DAL.Database
 {
@@ -17,8 +13,14 @@ namespace MiniMarket.DAL.Database
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
+        public DbSet<UtilisateurOrder> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new UtilisateurConfig());
+            modelBuilder.ApplyConfiguration(new ProductConfig());
+            modelBuilder.ApplyConfiguration(new UtilisateurOrderConfig());
+            modelBuilder.ApplyConfiguration(new OrderProductConfig());
         }
+    }
 }
