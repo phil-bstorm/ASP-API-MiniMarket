@@ -6,6 +6,8 @@ namespace MiniMarket.API.DTOs
     {
         public required int Id { get; set; }
         public required string Name { get; set; }
+        public required int Price { get; set; }
+        public required int Discount { get; set; }
     }
 
     public class ProductDTO

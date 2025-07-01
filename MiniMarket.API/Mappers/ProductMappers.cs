@@ -10,7 +10,9 @@ namespace MiniMarket.API.Mappers
             return new ProductListDTO
             {
                 Id = p.Id,
-                Name = p.Name
+                Name = p.Name,
+                Price = p.Price,
+                Discount = p.Discount,
             };
         }
 
