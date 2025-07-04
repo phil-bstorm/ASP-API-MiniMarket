@@ -42,6 +42,7 @@ namespace MiniMarket.DAL.Repositories
             return _context.Orders
                 .Include(o => o.Owner)
                 .Include(o => o.Products)
+                .ThenInclude(op => op.Product)
                 .FirstOrDefault(o => o.Id == key);
         }
 
