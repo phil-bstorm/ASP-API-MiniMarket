@@ -17,16 +17,16 @@ namespace MiniMarket.BLL.Services
 
         public Utilisateur Create(Utilisateur entity)
         {
-            Utilisateur? existingUser = _utilisateurRepository.GetByUsername(entity.Username);
-            if (existingUser is not null)
-            {
-                throw new UsernameAlreadyUsedException();
-            }
-
-            existingUser = _utilisateurRepository.GetByEmail(entity.Email);
+            Utilisateur? existingUser = _utilisateurRepository.GetByEmail(entity.Email);
             if (existingUser is not null)
             {
                 throw new EmailAlreadyUsedException();
+            }
+
+            existingUser = _utilisateurRepository.GetByUsername(entity.Username);
+            if (existingUser is not null)
+            {
+                throw new UsernameAlreadyUsedException();
             }
 
             // hash the password
