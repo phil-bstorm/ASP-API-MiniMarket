@@ -58,9 +58,7 @@ namespace MiniMarket.API.Test.Controllers
             Assert.Throws<NotFoundException>(() => productController.GetById(42));
 
             // Assert
-            mockService.Verify(service => service.GetById(42), Times.Once);
-
-           
+            mockService.Verify(service => service.GetById(42), Times.Once);           
         }
     }
 }
