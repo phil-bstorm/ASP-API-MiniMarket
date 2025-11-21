@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMarket.API", "MiniMarket.API\MiniMarket.API.csproj", "{BE1BD29F-7992-4C06-A9C7-F74BBC670CF2}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMarket.DAL", "MiniMarket.DAL\MiniMarket.DAL.csproj", "{28C86C12-EA30-46D9-A814-A832FFE970A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMarket.Domain", "MiniMarket.Domain\MiniMarket.Domain.csproj", "{555C7540-001E-4F59-A00E-56A1D72670CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMarket.API.Test", "MiniMarket.API.Test\MiniMarket.API.Test.csproj", "{A24E9A7B-FE9C-44AA-8885-A09E3A00E731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{555C7540-001E-4F59-A00E-56A1D72670CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{555C7540-001E-4F59-A00E-56A1D72670CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{555C7540-001E-4F59-A00E-56A1D72670CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24E9A7B-FE9C-44AA-8885-A09E3A00E731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24E9A7B-FE9C-44AA-8885-A09E3A00E731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24E9A7B-FE9C-44AA-8885-A09E3A00E731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24E9A7B-FE9C-44AA-8885-A09E3A00E731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
