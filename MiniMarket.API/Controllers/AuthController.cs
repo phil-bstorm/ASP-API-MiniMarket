@@ -45,7 +45,35 @@ namespace MiniMarket.API.Controllers
             Utilisateur utilisateur = _utilisateurService.Login(loginForm.Username, loginForm.Password);
 
             string token = _authService.GenerateToken(utilisateur);
-            return Ok(new TokenResponse { Token = token });
+
+            var cookieOptions = new CookieOptions
+            {
+                // CRUCIAL : Empêche le JavaScript client d'accéder au cookie
+                HttpOnly = true,
+
+                // Recommandé : Le cookie n'est envoyé que sur HTTPS (à mettre à false pour le dév localhost sans https)
+                Secure = true,
+
+                // Recommandé : Protège contre les attaques CSRF
+                SameSite = SameSiteMode.Strict,
+
+                // Durée de vie du cookie
+                Expires = DateTime.UtcNow.AddHours(1)
+            };
+
+            // Ajout du token dans un cookie
+            Response.Cookies.Append("accessToken", token, cookieOptions);
+
+            return Ok();
+        }
+
+        [HttpPost("logout", Name = "Logout")]
+        public ActionResult Logout()
+        {
+            // Supprime le cookie "accessToken"
+            Response.Cookies.Delete("accessToken");
+
+            return Ok();
         }
     }
 }
