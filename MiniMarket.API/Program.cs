@@ -17,6 +17,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+#region Sentry
+// https://docs.sentry.io/platforms/dotnet/guides/aspnetcore/
+builder.WebHost.UseSentry(options =>
+{
+    options.Dsn = "https://f63076b5f3011ebd5bdf3e89557b6436@o4510707936264192.ingest.de.sentry.io/4510708139294800"; 
+    options.SendDefaultPii = true;
+    options.TracesSampleRate = 1.0;
+});
+#endregion
+
 #region Swagger
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -75,6 +85,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 #region API Services
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<SentryService>();
 #endregion
 
 #region JWT Bearer Authentication
@@ -147,6 +158,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("FFA");
+
+app.UseSentryTracing();
 
 app.UseMiddleware<ExceptionMiddleware>(); // Register exception middleware
 

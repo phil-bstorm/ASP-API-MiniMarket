@@ -13,11 +13,13 @@ namespace MiniMarket.API.Controllers
     {
         private readonly IUtilisateurService _utilisateurService;
         private readonly AuthService _authService;
+        private readonly SentryService _sentryService;
 
-        public AuthController(IUtilisateurService utilisateurService, AuthService authService)
+        public AuthController(IUtilisateurService utilisateurService, AuthService authService, SentryService sentryService)
         {
             _utilisateurService = utilisateurService;
             _authService = authService;
+            _sentryService = sentryService;
         }
 
         [HttpPost("register", Name = "Register")]
@@ -42,10 +44,23 @@ namespace MiniMarket.API.Controllers
                 return BadRequest();
             }
 
+            // TODO Deplacer dans un service pour facilité l'usage
+            // Add information for sentry logging 
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.SetExtra("user email", loginForm.Username);
+            });
+
+            _sentryService.AddBreadcrumb("User login attempt");
             Utilisateur utilisateur = _utilisateurService.Login(loginForm.Username, loginForm.Password);
 
+            _sentryService.SetExtra("user id", utilisateur.Id.ToString());
+            _sentryService.SetExtra("user role", utilisateur.Role.ToString());
+
+            _sentryService.AddBreadcrumb("Generating token");
             string token = _authService.GenerateToken(utilisateur);
 
+            _sentryService.AddBreadcrumb("Cookie creation");
             var cookieOptions = new CookieOptions
             {
                 // CRUCIAL : Empêche le JavaScript client d'accéder au cookie
@@ -61,9 +76,11 @@ namespace MiniMarket.API.Controllers
                 Expires = DateTime.UtcNow.AddHours(1)
             };
 
+            _sentryService.AddBreadcrumb("Setting cookie");
             // Ajout du token dans un cookie
             Response.Cookies.Append("accessToken", token, cookieOptions);
 
+            _sentryService.AddBreadcrumb("End login process");
             return Ok();
         }
 

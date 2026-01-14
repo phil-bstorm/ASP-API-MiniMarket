@@ -43,6 +43,7 @@ namespace MiniMarket.API.Middlewares
                     break;
                 default:
                     statusCode = (int)HttpStatusCode.InternalServerError;
+                    SentrySdk.CaptureException(exception);
                     break;
             }
             context.Response.StatusCode = statusCode;
